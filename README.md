@@ -29,34 +29,37 @@ The main functionalities of this project include:
 
 To use the project:
 1.  Ensure NLTK is installed:
-
+    ```python
     import nltk
+
     nltk.download('punkt')
 
 2.  Modify **example_corpus.txt** or replace it with your own corpus for analysis.
 
 3.  Run **main()** from **ngram_model.py**:
-
+    ```bash
     python ngram_model.py
 
 ## Functions
 
-    **tokenizer(phrase)**: Tokenizes input text using NLTK's word_tokenize.
-    **read_file(filename)**: Reads a file and tokenizes it into a list of sentences.
-    **split_tokens(tokens, n=2)**: Splits a list of tokens into n-grams.
-    **get_vocabulary_size(sentence_list)**: Calculates the vocabulary size of a given corpus.
-    **build_ngram_model(sentence_tokens_list, n, smoothing="empirical", V=0)**: Builds an N-Gram language model with optional empirical or Laplace smoothing.
+-   **tokenizer(phrase)**: Tokenizes input text using NLTK's word_tokenize.
+-   **read_file(filename)**: Reads a file and tokenizes it into a list of sentences.
+-   **split_tokens(tokens, n=2)**: Splits a list of tokens into n-grams.
+-   **get_vocabulary_size(sentence_list)**: Calculates the vocabulary size of a given corpus.
+-   **build_ngram_model(sentence_tokens_list, n, smoothing="empirical", V=0)**: Builds an N-Gram language model with -   optional empirical or Laplace smoothing.
 
 ## Examples
 # Tokenization
+    ```python
     from ngram_model import tokenizer
     
     text = "This is an example sentence for tokenization."
     tokens = tokenizer(text)
     print(tokens)
+    
 
 # N-Gram Model
-
+    ```python
     from ngram_model import build_ngram_model, read_file
     
     corpus = read_file("example_corpus.txt")
