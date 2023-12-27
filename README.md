@@ -1,6 +1,6 @@
 # N-Gram Language Model
 
-This project implements an N-Gram language model using Python's NLTK library to analyze and generate text based on a given corpus. The model supports tokenization, N-Gram splitting, and different two options for obtaining probabilities such as empirical or with Laplace smoothing.
+This project implements an N-Gram language model using Python's NLTK library. The model supports tokenization, N-Gram splitting, and two options for calculation probabilities such as the empirical method or with Laplace smoothing.
 
 ## Table of Contents
 
@@ -61,14 +61,14 @@ To use the project:
 
 2.  N-Gram Model
     ```python
-        from ngram_model import build_ngram_model, read_file
-        
-        corpus = read_file("example_corpus.txt")
+    from ngram_model import build_ngram_model, read_file
+    
+    corpus = read_file("example_corpus.txt")
 
-        # Empirical model
-        empirical_model = build_ngram_model(corpus, n=3, smoothing="empirical")
+    # Empirical model
+    empirical_model = build_ngram_model(corpus, n=3, smoothing="empirical")
 
-        # Laplace smoothed model
-        vocabulary_size = get_vocabulary_size(corpus)
-        laplace_model = build_ngram_model(corpus, n=3, smoothing="laplace", V=vocabulary_size)
+    # Laplace smoothed model
+    vocabulary_size = get_vocabulary_size(corpus)
+    laplace_model = build_ngram_model(corpus, n=3, smoothing="laplace", V=vocabulary_size)
     ```
