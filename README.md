@@ -13,12 +13,9 @@ This project implements an N-Gram language model using Python's NLTK library to 
 
 1. **Clone this repository:**
 
-   ```bash
-   git clone https://github.com/username/n-gram-language-model.git
+    git clone https://github.com/username/n-gram-language-model.git
 
-    Install the required dependencies:
-
-    bash
+2.  **Install the required dependencies:**
 
     pip install -r requirements.txt
 
@@ -26,58 +23,48 @@ This project implements an N-Gram language model using Python's NLTK library to 
 
 The main functionalities of this project include:
 
-    Tokenization of text using NLTK's word_tokenize.
-    N-Gram splitting of tokens.
-    Building N-Gram language models with empirical or Laplace smoothing.
+-    Tokenization of text using NLTK's **word_tokenize**.
+-    N-Gram splitting of tokens.
+-    Building N-Gram language models with **empirical** or **Laplace** smoothing.
 
 To use the project:
+1.  Ensure NLTK is installed:
 
-    Ensure NLTK is installed:
+    import nltk
+    nltk.download('punkt')
 
-    python
+2.  Modify **example_corpus.txt** or replace it with your own corpus for analysis.
 
-import nltk
-nltk.download('punkt')
-
-Modify example_corpus.txt or replace it with your own corpus for analysis.
-
-Run main() from ngram_model.py:
-
-bash
+3.  Run **main()** from **ngram_model.py**:
 
     python ngram_model.py
 
 ## Functions
 
-    tokenizer(phrase): Tokenizes input text using NLTK's word_tokenize.
-    read_file(filename): Reads a file and tokenizes it into a list of sentences.
-    split_tokens(tokens, n=2): Splits a list of tokens into n-grams.
-    get_vocabulary_size(sentence_list): Calculates the vocabulary size of a given corpus.
-    build_ngram_model(sentence_tokens_list, n, smoothing="empirical", V=0): Builds an N-Gram language model with optional empirical or Laplace smoothing.
+    **tokenizer(phrase)**: Tokenizes input text using NLTK's word_tokenize.
+    **read_file(filename)**: Reads a file and tokenizes it into a list of sentences.
+    **split_tokens(tokens, n=2)**: Splits a list of tokens into n-grams.
+    **get_vocabulary_size(sentence_list)**: Calculates the vocabulary size of a given corpus.
+    **build_ngram_model(sentence_tokens_list, n, smoothing="empirical", V=0)**: Builds an N-Gram language model with optional empirical or Laplace smoothing.
 
 ## Examples
 # Tokenization
+    from ngram_model import tokenizer
+    
+    text = "This is an example sentence for tokenization."
+    tokens = tokenizer(text)
+    print(tokens)
 
-python
+# N-Gram Model
 
-from ngram_model import tokenizer
+    from ngram_model import build_ngram_model, read_file
+    
+    corpus = read_file("example_corpus.txt")
 
-text = "This is an example sentence for tokenization."
-tokens = tokenizer(text)
-print(tokens)
+    # Empirical model
+    empirical_model = build_ngram_model(corpus, n=3, smoothing="empirical")
 
-N-Gram Model
-
-python
-
-from ngram_model import build_ngram_model, read_file
-
-corpus = read_file("example_corpus.txt")
-
-# Empirical model
-empirical_model = build_ngram_model(corpus, n=3, smoothing="empirical")
-
-# Laplace smoothed model
-vocabulary_size = get_vocabulary_size(corpus)
-laplace_model = build_ngram_model(corpus, n=3, smoothing="laplace", V=vocabulary_size)
+    # Laplace smoothed model
+    vocabulary_size = get_vocabulary_size(corpus)
+    laplace_model = build_ngram_model(corpus, n=3, smoothing="laplace", V=vocabulary_size)
 
