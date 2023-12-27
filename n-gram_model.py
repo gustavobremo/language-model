@@ -42,6 +42,16 @@ def tokenizer(phrase):
     return tokens
 
 
+def read_file(filename):
+    # Create tokens list per sentence
+    sentence_list = []
+    with open(filename, "rt") as file:
+        for line in file:
+            sentence_list.append(list(line.split()))
+
+    return sentence_list
+
+
 def split_tokens(tokens, n=2):
     """
     Splits a list of tokens into n-grams.
@@ -78,7 +88,9 @@ def split_tokens(tokens, n=2):
     return split_tokens
 
 
-def get_vocabulary_size(corpus):
+def get_vocabulary_size(sentence_list):
+    corpus = [word for words in sentence_list for word in words]
+
     # Get unique words by converting the corpus to a set
     unique_words = set(corpus)
 
@@ -123,13 +135,14 @@ def build_ngram_model(sentence_tokens_list, n, smoothing="empirical", V=0):
         else:
             probabilities_dict[n_min_1_gram] = [following_word]
 
-    # Apply smoothing based on the specified method
+    # Following the empirical method
     if smoothing == "empirical":
         for key in probabilities_dict.keys():
             word_list = probabilities_dict[key]
             my_dict = {w: word_list.count(w) / len(word_list) for w in word_list}
             probabilities_dict[key] = my_dict
 
+    # Applying Laplace smoothing
     elif smoothing == "laplace":
         for key in probabilities_dict.keys():
             word_list = probabilities_dict[key]
@@ -145,22 +158,18 @@ def main():
     Main function to create the model and apply different smoothing techniques.
     """
 
-    # Create tokens list per sentence
-    sentence_list = []
-    with open("example_corpus.txt", "rt") as file:
-        for line in file:
-            sentence_list.append(list(line.split()))
-
-    corpus = [word for words in sentence_list for word in words]
+    sentence_list = read_file("example_corpus.txt")
 
     # Get the vocabulary size of the corpus
-    vocabulary_size = get_vocabulary_size(corpus)
+    vocabulary_size = get_vocabulary_size(sentence_list)
 
     # Build empirical n-gram model
-    model_empirical = build_ngram_model(sentence_list, n=3)
+    probabilities_empirical = build_ngram_model(sentence_list, smoothing="empirical", n=3)
 
     # Build n-gram model with Laplace smoothing
-    model_laplace = build_ngram_model(sentence_list, n=3, smoothing="laplace", V=vocabulary_size)
+    probabilities_laplace = build_ngram_model(
+        sentence_list, n=3, smoothing="laplace", V=vocabulary_size
+    )
 
 
 main()
