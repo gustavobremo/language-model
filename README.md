@@ -49,7 +49,8 @@ To use the project:
 -   **build_ngram_model(sentence_tokens_list, n, smoothing="empirical", V=0)**: Builds an N-Gram language model with -   optional empirical or Laplace smoothing.
 
 ## Examples
-# Tokenization
+1.  Tokenization
+
     ```python
     from ngram_model import tokenizer
     
@@ -58,16 +59,16 @@ To use the project:
     print(tokens)
     ```
 
-# N-Gram Model
-   ```python
-    from ngram_model import build_ngram_model, read_file
-    
-    corpus = read_file("example_corpus.txt")
+2.  N-Gram Model
+    ```python
+        from ngram_model import build_ngram_model, read_file
+        
+        corpus = read_file("example_corpus.txt")
 
-    # Empirical model
-    empirical_model = build_ngram_model(corpus, n=3, smoothing="empirical")
+        # Empirical model
+        empirical_model = build_ngram_model(corpus, n=3, smoothing="empirical")
 
-    # Laplace smoothed model
-    vocabulary_size = get_vocabulary_size(corpus)
-    laplace_model = build_ngram_model(corpus, n=3, smoothing="laplace", V=vocabulary_size)
+        # Laplace smoothed model
+        vocabulary_size = get_vocabulary_size(corpus)
+        laplace_model = build_ngram_model(corpus, n=3, smoothing="laplace", V=vocabulary_size)
     ```
