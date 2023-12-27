@@ -59,7 +59,7 @@ To use the project:
     
 
 # N-Gram Model
-    ```python
+   
     from ngram_model import build_ngram_model, read_file
     
     corpus = read_file("example_corpus.txt")
