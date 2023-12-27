@@ -33,12 +33,14 @@ To use the project:
     import nltk
 
     nltk.download('punkt')
+    ```
 
 2.  Modify **example_corpus.txt** or replace it with your own corpus for analysis.
 
 3.  Run **main()** from **ngram_model.py**:
     ```bash
     python ngram_model.py
+    ```
 
 ## Functions
 
@@ -56,10 +58,11 @@ To use the project:
     text = "This is an example sentence for tokenization."
     tokens = tokenizer(text)
     print(tokens)
+    ```
     
 
 # N-Gram Model
-   
+   ```python
     from ngram_model import build_ngram_model, read_file
     
     corpus = read_file("example_corpus.txt")
@@ -70,4 +73,4 @@ To use the project:
     # Laplace smoothed model
     vocabulary_size = get_vocabulary_size(corpus)
     laplace_model = build_ngram_model(corpus, n=3, smoothing="laplace", V=vocabulary_size)
-
+    ```
